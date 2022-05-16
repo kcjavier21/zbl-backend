@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
-import com.code.model.Team;
 import com.code.model.User;
 
 @Repository
@@ -27,7 +26,7 @@ public class UserService implements UserDao {
 		List<User> listOfUsers = jdbcTemplate.query(sql, new RowMapper<User>() {
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-				User user = new User(rs.getInt("id"), rs.getString("firsName"), rs.getString("lastName") , 
+				User user = new User(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName") , 
 						rs.getString("username"), rs.getString("email"), rs.getString("password"));
 				return user;
 			}
@@ -40,11 +39,31 @@ public class UserService implements UserDao {
 	public User getSingleUser(int id) {
 		String sql = "SELECT * FROM users WHERE id=" + id + ";";
 		
+		System.out.println(sql);
+		
 		return jdbcTemplate.query(sql, new ResultSetExtractor<User>() {
 			@Override
 			public User extractData(ResultSet rs) throws SQLException, DataAccessException {
 				if (rs.next()) {
-					User user = new User(rs.getInt("id"), rs.getString("firsName"), rs.getString("lastName") , 
+					User user = new User(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName") , 
+							rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getString("role"));
+					return user;
+				}
+				
+				return null;
+			}
+		});
+	}
+	
+	@Override
+	public User getUserByUsername(String username) {
+		String sql = "SELECT * FROM users WHERE username = '" + username + "';";
+		
+		return jdbcTemplate.query(sql, new ResultSetExtractor<User>() {
+			@Override
+			public User extractData(ResultSet rs) throws SQLException, DataAccessException {
+				if (rs.next()) {
+					User user = new User(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName") , 
 							rs.getString("username"), rs.getString("email"), rs.getString("password"));
 					return user;
 				}
@@ -59,8 +78,8 @@ public class UserService implements UserDao {
 		String salt = BCrypt.gensalt(10);
 		String encryptedPassword = BCrypt.hashpw(user.getPassword(), salt);
 		
-		String sql = "INSERT INTO users(firstName, lastName, username, email, password) VALUES('"+ user.getFirstName() 
-		+ "','" + user.getLastName() + "','" + user.getUsername() + "','" + user.getEmail() + "','" + encryptedPassword + "')";
+		String sql = "INSERT INTO users(firstName, lastName, username, email, password, role) VALUES('"+ user.getFirstName() 
+		+ "','" + user.getLastName() + "','" + user.getUsername() + "','" + user.getEmail() + "','" + encryptedPassword + "','" + user.getRole() + "')";
 		
 		try {
 			int response = jdbcTemplate.update(sql);

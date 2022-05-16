@@ -30,7 +30,7 @@ public class TeamController {
 		return listOfTeams;
 	}
 	
-	@RequestMapping(value = "/get-team-by-id", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/team-by-id", method = RequestMethod.GET)
 	public ResponseEntity<Team> getTeamById(Model model, @RequestParam("id") int id) {
 		Team team = new Team();
 		
@@ -51,7 +51,7 @@ public class TeamController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/update-team-by-id", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/team-by-id", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateTeam(Model model, @RequestParam("id") int id, @RequestBody Team team) throws Exception {
 		Team teamToUpdate = teamDao.getTeamById(id);	
 		if (teamToUpdate == null) return ResponseEntity.status(404).body("Team not found!");
@@ -60,7 +60,7 @@ public class TeamController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/delete-team-by-id", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/team-by-id", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteTeam(Model model, @RequestParam("id") int id) throws Exception {
 		Team teamToDelete = teamDao.getTeamById(id);	
 		if (teamToDelete == null) return ResponseEntity.status(404).body("Team not found!");

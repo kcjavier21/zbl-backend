@@ -21,19 +21,19 @@ public class BoxScoreController {
 	@Autowired
 	private BoxScoreDao boxScoreDao;
 	
-	@RequestMapping(value = "/get-all-box-scores", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/all-box-scores", method = RequestMethod.GET)
 	public List<BoxScore> getAllBoxScores() {
 		List<BoxScore> listOfPlayers = boxScoreDao.getAllBoxScores();
 		return listOfPlayers;
 	}
 	
-	@RequestMapping(value = "/get-all-box-scores-of-a-team", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/all-box-scores-of-a-team", method = RequestMethod.GET)
 	public List<BoxScore> getAllBoxScoresOfATeam(Model model, @RequestParam("teamId") int teamId) {
 		List<BoxScore> listOfPlayers = boxScoreDao.getAllBoxScoresOfATeam(teamId);
 		return listOfPlayers;
 	}
 	
-	@RequestMapping(value = "/get-single-box-score-by-id", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/single-box-score-by-id", method = RequestMethod.GET)
 	public ResponseEntity<BoxScore> getSinglePlayerById(Model model, @RequestParam("id") int id) {
 		BoxScore boxScore = new BoxScore();
 		
@@ -54,7 +54,7 @@ public class BoxScoreController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/update-box-score-by-id", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/box-score-by-id", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateTeam(Model model, @RequestParam("id") int id, @RequestBody BoxScore boxScore) throws Exception {
 		BoxScore boxScoreToUpdate = boxScoreDao.getSingleBoxScore(id);	
 		if (boxScoreToUpdate == null) return ResponseEntity.status(404).body("Box Score not found!");
@@ -63,7 +63,7 @@ public class BoxScoreController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/delete-box-score-by-id", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/box-score-by-id", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deletePlayer(Model model, @RequestParam("id") int id) throws Exception {
 		BoxScore boxScoreToDelete = boxScoreDao.getSingleBoxScore(id);
 		if (boxScoreToDelete == null) return ResponseEntity.status(404).body("Player not found!");

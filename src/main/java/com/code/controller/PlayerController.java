@@ -21,13 +21,13 @@ public class PlayerController {
 	@Autowired
 	private PlayerDao playerDao;
 	
-	@RequestMapping(value = "/get-players-in-a-team", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/players-in-a-team", method = RequestMethod.GET)
 	public List<Player> getAllPlayersInATeam(Model model, @RequestParam("teamId") int teamId) {
 		List<Player> listOfPlayers = playerDao.getAllPlayersInATeam(teamId);
 		return listOfPlayers;
 	}
 
-	@RequestMapping(value = "/get-single-player-by-id", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/single-player-by-id", method = RequestMethod.GET)
 	public ResponseEntity<Player> getSinglePlayerById(Model model, @RequestParam("id") int id) {
 		Player player = new Player();
 		
@@ -43,12 +43,12 @@ public class PlayerController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> createNewTeam(@RequestBody Player player) {
+	public ResponseEntity<String> createNewPlayer(@RequestBody Player player) {
 		ResponseEntity<String> response = playerDao.createNewPlayer(player);
 		return response;
 	}
 	
-	@RequestMapping(value = "/update-player-by-id", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/player-by-id", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateTeam(Model model, @RequestParam("id") int id, @RequestBody Player player) throws Exception {
 		Player playerToUpdate = playerDao.getSinglePlayerById(id);	
 		if (playerToUpdate == null) return ResponseEntity.status(404).body("Player not found!");
@@ -57,7 +57,7 @@ public class PlayerController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/delete-player-by-id", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/player-by-id", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deletePlayer(Model model, @RequestParam("id") int id) throws Exception {
 		Player playerToDelete = playerDao.getSinglePlayerById(id);
 		if (playerToDelete == null) return ResponseEntity.status(404).body("Player not found!");

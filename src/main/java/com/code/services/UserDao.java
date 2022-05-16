@@ -12,4 +12,5 @@ public interface UserDao {
 	public ResponseEntity<String> registerNewUser(User user);
 	public ResponseEntity<String> updateUser(int id, User user);
 	public ResponseEntity<String> deleteUser(int id);
+	public User getUserByUsername(String username);
 }

@@ -28,7 +28,7 @@ public class GameController {
 		return listOfTeams;
 	}
 	
-	@RequestMapping(value = "/get-game-by-id", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/game-by-id", method = RequestMethod.GET)
 	public ResponseEntity<Game> getGameById(Model model, @RequestParam("id") int id) {
 		Game game = new Game();
 		
@@ -49,7 +49,7 @@ public class GameController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/update-game-by-id", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/game-by-id", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateTeam(Model model, @RequestParam("id") int id, @RequestBody Game game) throws Exception {
 		Game gameToUpdate = gameDao.getSingleGame(id);	
 		if (gameToUpdate == null) return ResponseEntity.status(404).body("Game not found!");
@@ -58,7 +58,7 @@ public class GameController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/delete-game-by-id", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/game-by-id", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteTeam(Model model, @RequestParam("id") int id) throws Exception {
 		Game gameToDelete = gameDao.getSingleGame(id);	
 		if (gameToDelete == null) return ResponseEntity.status(404).body("Game not found!");
