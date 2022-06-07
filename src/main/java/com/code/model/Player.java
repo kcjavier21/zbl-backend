@@ -6,14 +6,15 @@ public class Player extends StatLine {
 	private String lastName;
 	private int teamId;
 	private int jerseyNumber;
-	
-	
+	private int gamesPlayed;
+
 	public Player(int id, String firstName, String lastName, int teamId, int jerseyNumber) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.teamId = teamId;
 		this.jerseyNumber = jerseyNumber;
+		this.gamesPlayed = 0;
 		
 		super.setPoints(0);
 		super.setRebounds(0);
@@ -60,5 +61,12 @@ public class Player extends StatLine {
 	}
 	public void setJerseyNumber(int jerseyNumber) {
 		this.jerseyNumber = jerseyNumber;
+	}
+	public int getGamesPlayed() {
+		return gamesPlayed;
+	}
+
+	public void setGamesPlayed(int gamesPlayed) {
+		this.gamesPlayed = gamesPlayed;
 	}
 }

@@ -31,6 +31,7 @@ public class PlayerService implements PlayerDao {
 						rs.getString("lastName"),  rs.getInt("teamId"), 
 						rs.getInt("jerseyNumber"));
 				
+				player.setGamesPlayed(rs.getInt("gamesPlayed"));
 				player.setPoints(rs.getFloat("points"));
 				player.setRebounds(rs.getFloat("rebounds"));
 				player.setAssists(rs.getFloat("assists"));
@@ -61,6 +62,7 @@ public class PlayerService implements PlayerDao {
 							rs.getString("lastName"),  rs.getInt("teamId"), 
 							rs.getInt("jerseyNumber"));
 					
+					player.setGamesPlayed(rs.getInt("gamesPlayed"));
 					player.setPoints(rs.getFloat("points"));
 					player.setRebounds(rs.getFloat("rebounds"));
 					player.setAssists(rs.getFloat("assists"));
@@ -98,7 +100,7 @@ public class PlayerService implements PlayerDao {
 	public ResponseEntity<String> updatePlayer(int id, Player player) {
 		String sql = "UPDATE players " + 
 				"SET firstName = '" + player.getFirstName() + "', lastName = '" + player.getLastName() + "', " +
-				"teamId = " + player.getTeamId() + ", jerseyNumber = " + player.getJerseyNumber() + ", " +
+				"teamId = " + player.getTeamId() + ", jerseyNumber = " + player.getJerseyNumber() + ", " + "gamesPlayed = " + player.getGamesPlayed() + "', " +
 				"points = " + player.getPoints() + ", rebounds = " + player.getRebounds() + ", assists = " + player.getAssists() + ", " +
 				"blocks = " + player.getBlocks() + ", steals = " + player.getSteals() + ", twoPointFG = " + player.getTwoPointFG() + ", " +
 				"threePointFG = " + player.getThreePointFG() + ", freeThrows = " + player.getFreeThrows() + ", turnovers = " + player.getTurnovers() + " " +

@@ -24,7 +24,7 @@ public class TeamController {
 	@Autowired
 	private TeamDao teamDao;
 	
-	@GetMapping
+	@RequestMapping(value = "/get/all", method = RequestMethod.GET)
 	public List<Team> getAllTeams() {
 		List<Team> listOfTeams = teamDao.getAllTeams();
 		return listOfTeams;

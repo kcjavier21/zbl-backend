@@ -9,19 +9,31 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Team {
+public class Team extends StatLine {
 	private int id;
 	private String name;
 	private String logo;
 	private int wins;
 	private int losses;
-	
+	private int gamesPlayed;
+
 	public Team(int id, String name, String logo) {
 		this.id = id;
 		this.name = name;
 		this.logo = logo;
 		this.wins = 0;
 		this.losses = 0;
+		this.gamesPlayed = 0;
+
+		super.setPoints(0);
+		super.setRebounds(0);
+		super.setAssists(0);
+		super.setBlocks(0);
+		super.setSteals(0);
+		super.setTwoPointFG(0);
+		super.setThreePointFG(0);
+		super.setFreeThrows(0);
+		super.setTurnovers(0);
 	}
 	
 	public Team() {
@@ -29,6 +41,17 @@ public class Team {
 		this.logo = "";
 		this.wins = 0;
 		this.losses = 0;
+		this.gamesPlayed = 0;
+		
+		super.setPoints(0);
+		super.setRebounds(0);
+		super.setAssists(0);
+		super.setBlocks(0);
+		super.setSteals(0);
+		super.setTwoPointFG(0);
+		super.setThreePointFG(0);
+		super.setFreeThrows(0);
+		super.setTurnovers(0);
 	}
 	
 	public int getId() {
@@ -69,5 +92,13 @@ public class Team {
 
 	public void setLosses(int losses) {
 		this.losses = losses;
+	}
+	
+	public int getGamesPlayed() {
+		return gamesPlayed;
+	}
+
+	public void setGamesPlayed(int gamesPlayed) {
+		this.gamesPlayed = gamesPlayed;
 	}
 }

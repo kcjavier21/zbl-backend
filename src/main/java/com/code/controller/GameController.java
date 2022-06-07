@@ -22,10 +22,10 @@ public class GameController {
 	@Autowired
 	private GameDao gameDao;
 	
-	@GetMapping
-	public List<Game> getAllTeams() {
-		List<Game> listOfTeams = gameDao.getAllGames();
-		return listOfTeams;
+	@RequestMapping(value = "/get/all-games", method = RequestMethod.GET)
+	public List<Game> getAllGames() {
+		List<Game> listOfGames = gameDao.getAllGames();
+		return listOfGames;
 	}
 	
 	@RequestMapping(value = "/get/game-by-id", method = RequestMethod.GET)
@@ -44,7 +44,7 @@ public class GameController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> createNewTeam(@RequestBody Game game) {
+	public ResponseEntity<String> createNewGame(@RequestBody Game game) {
 		ResponseEntity<String> response = gameDao.createNewGame(game);
 		return response;
 	}

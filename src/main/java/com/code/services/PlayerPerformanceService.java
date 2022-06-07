@@ -105,8 +105,11 @@ public class PlayerPerformanceService implements PlayerPerformanceDao {
 
 	@Override
 	public ResponseEntity<String> createNewPlayerPerformance(PlayerPerformance playerPerformance) {
-		String sql = "INSERT INTO playerPerformances(playerId, gameId) " + 
-				"VALUES(" + playerPerformance.getPlayerId() + ", " + playerPerformance.getGameId() + ");";
+		String sql = "INSERT INTO playerPerformances(playerId, gameId, points, rebounds, assists, blocks, steals, twoPointFG, threePointFG, freeThrows, turnovers) " + 
+				"VALUES(" + playerPerformance.getPlayerId() + ", " + playerPerformance.getGameId() + ", " 
+				 + playerPerformance.getPoints() + ", " + playerPerformance.getRebounds() + ", " + playerPerformance.getAssists() + ", " 
+				 + playerPerformance.getBlocks() + ", " + playerPerformance.getSteals() + ", " + playerPerformance.getTwoPointFG() + ", " 
+				 + playerPerformance.getThreePointFG() + ", " + playerPerformance.getFreeThrows() + ", " + playerPerformance.getTurnovers() +");";
 		
 		try {
 			int response = jdbcTemplate.update(sql);

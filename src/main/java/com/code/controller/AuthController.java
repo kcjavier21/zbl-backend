@@ -25,13 +25,18 @@ public class AuthController {
 		return "This is Home page";
 	}
 	
+	@RequestMapping(value = "/home/another", method = RequestMethod.GET)
+	public String homeAnother() {
+		return "This is Another Home page";
+	}
+	
 	
 	@RequestMapping(value = "/get-token", method = RequestMethod.GET)
-	public String getToken(Model model, @RequestParam("id") int id) {
+	public String getToken(Model model, @RequestParam("username") String username) {
 		User user = new User();
 		
 		try {
-			user = userDao.getSingleUser(id);
+			user = userDao.getUserByUsername(username);
 			if (user != null) return jwtUtility.generateToken(user);
 			else return "User not found :(";
 		}

@@ -47,6 +47,16 @@ public class TeamService implements TeamDao {
 					Team team = new Team(rs.getInt("id"), rs.getString("name"), rs.getString("logo"));
 					team.setWins(rs.getInt("wins"));
 					team.setLosses(rs.getInt("losses"));
+					team.setGamesPlayed(rs.getInt("gamesPlayed"));
+					team.setPoints(rs.getFloat("points"));
+					team.setRebounds(rs.getFloat("rebounds"));
+					team.setAssists(rs.getFloat("assists"));
+					team.setBlocks(rs.getFloat("blocks"));
+					team.setSteals(rs.getFloat("steals"));
+					team.setTwoPointFG(rs.getFloat("twoPointFG"));
+					team.setThreePointFG(rs.getFloat("threePointFG"));
+					team.setFreeThrows(rs.getFloat("freeThrows"));
+					team.setTurnovers(rs.getFloat("turnovers"));
 					return team;
 				}
 				
@@ -74,7 +84,12 @@ public class TeamService implements TeamDao {
 	public ResponseEntity <String> updateTeam(int id, Team team) {
 		String sql = "UPDATE teams " + 
 				"SET name = '" + team.getName() + "', logo = '" + team.getLogo() + 
-				"', wins = " + team.getWins() + ", losses = " + team.getLosses() + " " + 
+				"', wins = " + team.getWins() + ", losses = " + team.getLosses() + 
+				"', gamesPlayed = " + team.getGamesPlayed() + ", points = " + team.getPoints() + 
+				"', rebounds = " + team.getRebounds() + ", assists = " + team.getAssists() + 
+				"', blocks = " + team.getBlocks() + ", steals = " + team.getSteals() + 
+				"', twoPointFG = " + team.getTwoPointFG() + ", threePointFG = " + team.getThreePointFG() +
+				"', freeThrows = " + team.getFreeThrows() + ", turnovers = " + team.getTurnovers() + " " + 
 				"WHERE id = " + id + ";";
 		
 		try {
