@@ -26,6 +26,17 @@ public class BoxScoreService implements BoxScoreDao {
 			@Override
 			public BoxScore mapRow(ResultSet rs, int rowNum) throws SQLException {
 				BoxScore boxScore = new BoxScore(rs.getInt("id"), rs.getInt("gameId"), rs.getInt("teamId"));
+				
+				boxScore.setPoints(rs.getFloat("points"));
+				boxScore.setRebounds(rs.getFloat("rebounds"));
+				boxScore.setAssists(rs.getFloat("assists"));
+				boxScore.setBlocks(rs.getFloat("blocks"));
+				boxScore.setSteals(rs.getFloat("steals"));
+				boxScore.setTwoPointFG(rs.getFloat("twoPointFG"));
+				boxScore.setThreePointFG(rs.getFloat("threePointFG"));
+				boxScore.setFreeThrows(rs.getFloat("freeThrows"));
+				boxScore.setTurnovers(rs.getFloat("turnovers"));
+				
 				return boxScore;
 			}
 		});
@@ -40,6 +51,17 @@ public class BoxScoreService implements BoxScoreDao {
 			@Override
 			public BoxScore mapRow(ResultSet rs, int rowNum) throws SQLException {
 				BoxScore boxScore = new BoxScore(rs.getInt("id"), rs.getInt("gameId"), rs.getInt("teamId"));
+				
+				boxScore.setPoints(rs.getFloat("points"));
+				boxScore.setRebounds(rs.getFloat("rebounds"));
+				boxScore.setAssists(rs.getFloat("assists"));
+				boxScore.setBlocks(rs.getFloat("blocks"));
+				boxScore.setSteals(rs.getFloat("steals"));
+				boxScore.setTwoPointFG(rs.getFloat("twoPointFG"));
+				boxScore.setThreePointFG(rs.getFloat("threePointFG"));
+				boxScore.setFreeThrows(rs.getFloat("freeThrows"));
+				boxScore.setTurnovers(rs.getFloat("turnovers"));
+				
 				return boxScore;
 			}
 		});
@@ -57,6 +79,17 @@ public class BoxScoreService implements BoxScoreDao {
 			public BoxScore extractData(ResultSet rs) throws SQLException, DataAccessException {
 				if (rs.next()) {
 					BoxScore boxScore = new BoxScore(rs.getInt("id"), rs.getInt("gameId"), rs.getInt("teamId"));
+					
+					boxScore.setPoints(rs.getFloat("points"));
+					boxScore.setRebounds(rs.getFloat("rebounds"));
+					boxScore.setAssists(rs.getFloat("assists"));
+					boxScore.setBlocks(rs.getFloat("blocks"));
+					boxScore.setSteals(rs.getFloat("steals"));
+					boxScore.setTwoPointFG(rs.getFloat("twoPointFG"));
+					boxScore.setThreePointFG(rs.getFloat("threePointFG"));
+					boxScore.setFreeThrows(rs.getFloat("freeThrows"));
+					boxScore.setTurnovers(rs.getFloat("turnovers"));
+					
 					return boxScore;
 				}
 				return null;
@@ -66,8 +99,10 @@ public class BoxScoreService implements BoxScoreDao {
 
 	@Override
 	public ResponseEntity<String> createNewBoxScore(BoxScore boxScore) {
-		String sql = "INSERT INTO boxScores(gameId, teamId) VALUES("+ boxScore.getGameId() + 
-				", " + boxScore.getTeamId() + ");";
+		String sql = "INSERT INTO boxScores(gameId, teamId, points, rebounds, assists, blocks, steals, twoPointFG, threePointFG, freeThrows, turnovers) " + 
+				"VALUES("+ boxScore.getGameId() + ", " + boxScore.getTeamId() + ", " + boxScore.getPoints() + ", " + boxScore.getRebounds() + ", " + 
+				boxScore.getAssists() + ", " + boxScore.getBlocks() + ", " + boxScore.getSteals() + ", " + boxScore.getTwoPointFG() + ", "  +
+				boxScore.getThreePointFG() + ", " + boxScore.getFreeThrows() + ", " + boxScore.getTurnovers() +");";
 		
 		try {
 			int response = jdbcTemplate.update(sql);

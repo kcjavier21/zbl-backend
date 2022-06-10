@@ -7,6 +7,11 @@ public class Player extends StatLine {
 	private int teamId;
 	private int jerseyNumber;
 	private int gamesPlayed;
+	private float height;
+	private int weight;
+	private String position;
+	private String picture;
+
 
 	public Player(int id, String firstName, String lastName, int teamId, int jerseyNumber) {
 		this.id = id;
@@ -15,6 +20,10 @@ public class Player extends StatLine {
 		this.teamId = teamId;
 		this.jerseyNumber = jerseyNumber;
 		this.gamesPlayed = 0;
+		this.height = 0;
+		this.weight = 0;
+		this.position = "";
+		this.picture = "";
 		
 		super.setPoints(0);
 		super.setRebounds(0);
@@ -68,5 +77,36 @@ public class Player extends StatLine {
 
 	public void setGamesPlayed(int gamesPlayed) {
 		this.gamesPlayed = gamesPlayed;
+	}
+	public float getHeight() {
+		return height;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 }

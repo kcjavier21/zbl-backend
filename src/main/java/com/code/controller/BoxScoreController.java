@@ -33,6 +33,12 @@ public class BoxScoreController {
 		return listOfPlayers;
 	}
 	
+	@RequestMapping(value = "/get/all-box-scores-in-a-game", method = RequestMethod.GET)
+	public List<BoxScore> getAllBoxScoresInAGame(Model model, @RequestParam("teamId") int gameId) {
+		List<BoxScore> listOfPlayers = boxScoreDao.getAllBoxScoresOfATeam(gameId);
+		return listOfPlayers;
+	}
+	
 	@RequestMapping(value = "/get/single-box-score-by-id", method = RequestMethod.GET)
 	public ResponseEntity<BoxScore> getSinglePlayerById(Model model, @RequestParam("id") int id) {
 		BoxScore boxScore = new BoxScore();

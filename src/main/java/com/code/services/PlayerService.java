@@ -31,6 +31,10 @@ public class PlayerService implements PlayerDao {
 						rs.getString("lastName"),  rs.getInt("teamId"), 
 						rs.getInt("jerseyNumber"));
 				
+				player.setHeight(rs.getFloat("height"));
+				player.setWeight(rs.getInt("weight"));
+				player.setPosition(rs.getString("position"));
+				player.setPicture(rs.getString("picture"));
 				player.setGamesPlayed(rs.getInt("gamesPlayed"));
 				player.setPoints(rs.getFloat("points"));
 				player.setRebounds(rs.getFloat("rebounds"));
@@ -41,6 +45,7 @@ public class PlayerService implements PlayerDao {
 				player.setThreePointFG(rs.getFloat("threePointFG"));
 				player.setFreeThrows(rs.getFloat("freeThrows"));
 				player.setTurnovers(rs.getFloat("turnovers"));
+				
 				return player;
 			}
 		});
@@ -62,6 +67,10 @@ public class PlayerService implements PlayerDao {
 							rs.getString("lastName"),  rs.getInt("teamId"), 
 							rs.getInt("jerseyNumber"));
 					
+					player.setHeight(rs.getFloat("height"));
+					player.setWeight(rs.getInt("weight"));
+					player.setPosition(rs.getString("position"));
+					player.setPicture(rs.getString("picture"));
 					player.setGamesPlayed(rs.getInt("gamesPlayed"));
 					player.setPoints(rs.getFloat("points"));
 					player.setRebounds(rs.getFloat("rebounds"));
@@ -104,6 +113,7 @@ public class PlayerService implements PlayerDao {
 				"points = " + player.getPoints() + ", rebounds = " + player.getRebounds() + ", assists = " + player.getAssists() + ", " +
 				"blocks = " + player.getBlocks() + ", steals = " + player.getSteals() + ", twoPointFG = " + player.getTwoPointFG() + ", " +
 				"threePointFG = " + player.getThreePointFG() + ", freeThrows = " + player.getFreeThrows() + ", turnovers = " + player.getTurnovers() + " " +
+				"height = " + player.getHeight() + ", weight = " + player.getWeight() + ", position = " + player.getPosition() + "picture = " + player.getPicture() + " " +
 				"WHERE id = " + id + ";";
 		
 		try {

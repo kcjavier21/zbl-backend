@@ -37,7 +37,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/api/teams/get/**").permitAll()
 		.antMatchers("/api/box-scores/get/**").permitAll()
 		.antMatchers("/api/games/get/**").permitAll()
-		.anyRequest().authenticated()
+		.anyRequest().permitAll()
 		.and()
 		.httpBasic();
 	}
